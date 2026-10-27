@@ -1,0 +1,42 @@
+@host = http://localhost:5280
+
+### Criar cobrança válida
+POST {{host}}/cobrancas
+Content-Type: application/json
+
+{
+  "valor": 150.50,
+  "nomePagador": "Maria Souza",
+  "chavePix": "maria@exemplo.com"
+}
+
+### Criar cobrança com valor inválido
+POST {{host}}/cobrancas
+Content-Type: application/json
+
+{
+  "valor": 0,
+  "nomePagador": "Maria Souza",
+  "chavePix": "maria@exemplo.com"
+}
+
+### Criar cobrança sem chave pix
+POST {{host}}/cobrancas
+Content-Type: application/json
+
+{
+  "valor": 80,
+  "nomePagador": "Maria Souza",
+  "chavePix": ""
+}
+
+### Consultar cobrança por id
+GET {{host}}/cobrancas/SEU_ID_AQUI
+
+### Confirmar pagamento
+POST {{host}}/webhook/confirmacao
+Content-Type: application/json
+
+{
+  "cobrancaId": "SEU_ID_AQUI"
+}
